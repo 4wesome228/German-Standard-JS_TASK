@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ServiceProvider } from "./service/service-context";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import { MusicService } from "./service/musicService";
+import Routes from "./routes";
 
 function App() {
+  const musicService = new MusicService();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <ServiceProvider value={musicService}>
+          <Routes />
+        </ServiceProvider>
+      </div>
+    </Router>
   );
 }
 

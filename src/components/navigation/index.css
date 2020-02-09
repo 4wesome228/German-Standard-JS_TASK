@@ -1,0 +1,11 @@
+.footer {
+    background-color: #dfe6e9;
+}
+
+.pr-1.active {
+    color: red
+}
+
+.footer span:hover {
+    cursor: pointer;
+}
