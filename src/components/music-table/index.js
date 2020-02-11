@@ -1,34 +1,51 @@
-import React, { Component } from "react";
+import React from "react";
 
-class MusicTable extends Component {
-  componentDidMount() {}
-
-  renderTableBody = items => {
-    const { renderTableRow } = this.props;
-    return items.map(item => {
-      const { id } = item.id;
-      const tableRow = renderTableRow(item);
-      return <tr key={id}>{tableRow}</tr>;
-    });
+const MusicTable = ({ tracks, onSortOptionChanged, renderTableRow }) => {
+  const createTableTitle = (title, onOptionChanged) => {
+    let loweCaseTitle = title.toLowerCase();
+    return (
+      <th scope="col" key={title}>
+        {title}
+        <i
+          onClick={() => onOptionChanged(loweCaseTitle)}
+          className="fa fa-sort pl-2 align-middle text-secondary btn"
+          title="Sort"
+        ></i>
+      </th>
+    );
   };
 
-  render() {
-    const { data } = this.props;
-    if (!data) return null;
+  const titles = [
+    createTableTitle("Singer", onSortOptionChanged),
+    createTableTitle("Song", onSortOptionChanged),
+    createTableTitle("Genre", onSortOptionChanged),
+    createTableTitle("Year", onSortOptionChanged)
+  ];
+
+  const fields = tracks.map(track => {
+    const { id } = track;
+    const tableRow = renderTableRow(track);
+    return <tr key={id}>{tableRow}</tr>;
+  });
+
+  if (!tracks.length)
     return (
       <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Singer</th>
-            <th scope="col">Song</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Year</th>
+        <tbody>
+          <tr className="text-center text-primary">
+            <td>No such tracks</td>
           </tr>
-        </thead>
-        <tbody>{this.renderTableBody(data)}</tbody>
+        </tbody>
       </table>
     );
-  }
-}
+  return (
+    <table className="table table-striped table-bordered">
+      <thead>
+        <tr>{titles}</tr>
+      </thead>
+      <tbody>{fields}</tbody>
+    </table>
+  );
+};
 
 export default MusicTable;

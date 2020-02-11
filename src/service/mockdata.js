@@ -4,8 +4,8 @@ let mockData = [];
 let singer = faker.name.firstName();
 let genre = faker.lorem.word();
 
-for (let i = 0; i < 28; i++) {
-  if (i % 10 === 0) {
+for (let i = 0; i < 120; i++) {
+  if (i % 4 === 0) {
     singer = faker.name.firstName();
     genre = faker.lorem.word();
   }
@@ -14,7 +14,7 @@ for (let i = 0; i < 28; i++) {
     singer: singer,
     song: faker.name.title(),
     genre: genre,
-    date: 2018 - randomInteger(1, 15)
+    year: 2018 - randomInteger(1, 15)
   });
 }
 

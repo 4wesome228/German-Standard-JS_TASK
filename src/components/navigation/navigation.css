@@ -1,0 +1,22 @@
+.pr-1.active {
+    color: red;
+}
+
+.footer span:hover {
+    cursor: pointer;
+}
+
+.arrow {
+    cursor: pointer;
+    color: #f3f3f3;
+}
+
+.arrow:hover {
+    color: red;
+    transition: color 0.2s ease-in-out;
+}
+
+div>span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
